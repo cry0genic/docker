@@ -29,7 +29,7 @@ Container is a set of processes that have a grouping of resources specifically a
 Client and daemon can run on same or different hosts
 
 ### Installation on Linux
-[Follow this tutorial](Installing Docker on Linux.html)
+Download the HTML file in the folder and follow the steps. This is for linux only.
 
 ### Docker Version:
 Lists out the CLI and Server Version
