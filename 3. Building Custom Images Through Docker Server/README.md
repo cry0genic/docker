@@ -8,7 +8,7 @@ Specify a base image 🠲 Run some commands to install additional programs 🠲 
 
 ### Building a Dockerfile
 ```docker build .``` <br/>
-[Source Code]( insert link here) <br/> 
+[Source Code]( https://github.com/cry0genic/Docker/blob/main/3.%20Building%20Custom%20Images%20Through%20Docker%20Server/redis-image/Dockerfile) <br/> 
 
 ### Dockerfile Teardown
 FROM, RUN, CMD - Instruction telling Docker Server what to do... <br/>
@@ -42,8 +42,8 @@ Removing intermediate container 54e30de3e509
 Successfully built 7df48aa3910a
 ``` 
 <br/>
-- FROM alpine : downloads the Alpine Image from Docker Hub
-- RUN apk add --update redis : Looked at the image from the previous step, and created a new container out of it (Running in 33e75564b8a3 in Step 2/3). After creating the temporary container, the command (RUN apk add --update redis) was executed as the primary running process. It downloaded and installed redis along with few other dependencies. We then stop the container and take a FS snapshot of that container and we save it as a temporary image(35ed10e3a35a).
+- FROM alpine : downloads the Alpine Image from Docker Hub <br/>
+- RUN apk add --update redis : Looked at the image from the previous step, and created a new container out of it (Running in 33e75564b8a3 in Step 2/3). After creating the temporary container, the command (RUN apk add --update redis) was executed as the primary running process. It downloaded and installed redis along with few other dependencies. We then stop the container and take a FS snapshot of that container and we save it as a temporary image(35ed10e3a35a). <br/>
 - CMD ["redis-server"] : Take the image from the previous step (35ed10e3a35a) and create a container with primary default command 'redis-server' (note that it sets this as the default command, and does not execute it). We again stop the container and take a FS snapshot of the container and its primary command and save it as a image (7df48aa3910a). This is the final image with redis and primary startup command. 
 <br/>
 
@@ -67,10 +67,12 @@ $ apk add --update redis
 ``` 
 <br/>
 In another terminal <br/>
+
 ```bash
 $ docker ps
 $ docker commit -c 'CMD ["redis-server"]' <container id>
 $ docker run <container id>
 ```
+
 <br/>
 This is the manual process of basically doing what the Dockerfile did.
