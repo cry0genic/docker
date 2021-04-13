@@ -7,8 +7,8 @@ Creating and running a container from an Image:
 ### Overriding Default Commands
 Override the default startup command
 <br/>
-Execution : ```docker run <image name> command```
-Example : ```docker run busybox echo hi there```
+Execution : ```docker run <image name> command``` <br/>
+Example : ```docker run busybox echo hi there``` <br/>
 Example : ```docker run busybox ls``` (lists out everything in the container)
 <br/>
 Echo and ls exist inside the busybox FS Image, hence are executable.
@@ -33,10 +33,10 @@ Lists out all the containers that have ever been created:
 Creating a container and actually starting are two separate processes. <br/>
 ```docker run``` = ```docker create``` + ```docker start``` <br/>
 
-- Create a Container
+- Create a Container <br/>
     ```docker create <image name>``` <br/>
     Prints out the id of the container created as the output
-- Start a Container
+- Start a Container <br>
     ```docker start -a <container id>```<br/>
     -a command makes Docker watch for output from the container and prints it to your terminal
     
@@ -66,7 +66,7 @@ Execute an additional command in a container:
 ##### -it flag 
 allows us to provide input to the container <br/>
 
-Every process that we create, has 3 channels attached to it. STDIN, STDOUT, STDERR
+Every process that we create, has 3 channels attached to it. STDIN, STDOUT, STDERR <br/>
 ```-it``` =  ```-i``` + ```-t``` 
 "-i" : attach terminal to STDIN <br>
 "-t" : makes sure whatever the I/O is, if formatted in a nicely, shortely manner xD!
