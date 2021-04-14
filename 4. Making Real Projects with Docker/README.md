@@ -7,8 +7,8 @@ Disclaimer: We're going to do a few things slightly wrong! <br/>
 ### Node Server Setup
 Download the [HTML file](source code), open it and follow the steps in it. <br/>
 
-[index.js](souce code) <br/>
-[package.json](soirce code)<br/>
+[index.js](https://github.com/cry0genic/Docker/blob/main/4.%20Making%20Real%20Projects%20with%20Docker/simpleweb/index.js) <br/>
+[package.json](https://github.com/cry0genic/Docker/blob/main/4.%20Making%20Real%20Projects%20with%20Docker/simpleweb/package.json)<br/>
 
 
 ### A Few Planned Errors
@@ -29,7 +29,9 @@ CMD ["npm", "start"]
 ```
 
 <br/>
+
 Run ```docker build . ```
+
 <br/>
 Error 
 
@@ -70,8 +72,9 @@ COPY ./ ./
 WORKDIR instruction enables us to run commands relative to a folder <br/>
 
 <br/>
-Now, run the container by ```docker run <yourDockerID>/<name of the project>```. <br/>
-Now go to https://localhost:8080. 
+Now, run the container by  ```docker run <yourDockerID>/<name of the project>```   
+<br/>
+Now go to [https://localhost:808](https://localhost:808)
 
 ### Container Port Mapping
 When we tried to visit https://localhost:8080, we got an error message. The browser is making a request to port 8080 on your current local machine. By default, no traffic coming into your localhost network is routed into the container.The container has its own isolated ports that cannot recieve traffic. To connect/bind both the ports, we set an explicit port mapping. <br/>
@@ -85,7 +88,7 @@ Go to https://localhost:8080 and now your web application will work just fine!
 
 ### Unnecessary Rebuilds
 Run the container by ```docker run -p 8080:8080 <yourDockerID>/<name of the project>``` <br/>
-Go to [index.js](source code here) and change "Hi there" with "Bye There" and refresh https://localhost:8080. Nothing changes. This is because anytime we are creating a container, we are taking a snapshot of the FS. Any changes made further will not be automatically detected inside the container. One solution to this is building the container again. All the instructions after COPY run and all the dependencies are again installed even though we only changed a single line of unrelated code. This is not ideal.
+Go to [index.js](https://github.com/cry0genic/Docker/blob/main/4.%20Making%20Real%20Projects%20with%20Docker/simpleweb/index.js) and change "Hi there" with "Bye There" and refresh https://localhost:8080. Nothing changes. This is because anytime we are creating a container, we are taking a snapshot of the FS. Any changes made further will not be automatically detected inside the container. One solution to this is building the container again. All the instructions after COPY run and all the dependencies are again installed even though we only changed a single line of unrelated code. This is not ideal.
 
 ### Minimizing Cache Busting and Rebuilds
 In the last part, we saw that we had to run every single step starting from COPY to RUN. This can be avoided. <br/>
@@ -94,3 +97,4 @@ COPY ./package.json ./
 RUN npm install
 COPY ./ ./
 ```
+
