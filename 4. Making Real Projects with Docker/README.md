@@ -78,7 +78,7 @@ Now run the container by  ```docker run <yourDockerID>/<name of the project>```
 
 
 <br/>
-Now go to [https://localhost:8080](https://localhost:8080)
+Now go to https://localhost:8080
 
 ### Container Port Mapping
 When we tried to visit https://localhost:8080, we got an error message. The browser is making a request to port 8080 on your current local machine. By default, no traffic coming into your localhost network is routed into the container.The container has its own isolated ports that cannot recieve traffic. To connect/bind both the ports, we set an explicit port mapping. <br/>
