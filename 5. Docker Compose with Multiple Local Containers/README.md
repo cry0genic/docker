@@ -29,7 +29,9 @@ We will use a separate CLI tool, called Docker-Compose!
 - used to start up multiple Docker containers at the same time
 - Automates some of the long-winded arguments we were passing to 'docker run'
 <br/>
-Run  ```docker-compose```  in the terminal. It will list out all the commands that can be used with 'docker-compose'!
+Run 
+```docker-compose```  
+in the terminal. It will list out all the commands that can be used with 'docker-compose'!
 <br/>
 
 ### Docker Compose Files
