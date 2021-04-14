@@ -29,9 +29,13 @@ We will use a separate CLI tool, called Docker-Compose!
 - used to start up multiple Docker containers at the same time
 - Automates some of the long-winded arguments we were passing to 'docker run'
 <br/>
-Run 
-```docker-compose```  
-in the terminal. It will list out all the commands that can be used with 'docker-compose'!
+
+
+```bash
+$ docker-compose
+```
+
+Run the above commands in the terminal. It will list out all the commands that can be used with 'docker-compose'!
 <br/>
 
 ### Docker Compose Files
@@ -66,7 +70,7 @@ There are 4 different restart policies listed as:
 - on-failure : only restart if the container stops with an error code
 - unless-stopped : always restart unless we forcibly stop it
 <br/>
-Add a restart policy by adding  ```restart: <policy>```  into the services. <br/>
+Add a restart policy by adding  ```restart: <restart policy>```  into the services. <br/>
 
 ### Container Status with Docker Compose
 Print out the status of running containers by ```docker-compose ps```. This command will look for the 'docker-compose.yml' file in the directory from where the commands was ran, and then if it finds one, it will read that file and find all the running containers on the machine which belong to this docker-compose file.
