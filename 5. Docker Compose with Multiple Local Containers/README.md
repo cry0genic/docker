@@ -70,6 +70,8 @@ There are 4 different restart policies listed as:
 - on-failure : only restart if the container stops with an error code
 - unless-stopped : always restart unless we forcibly stop it
 <br/>
+
+
 Add a restart policy by adding  ```restart: <restart policy>```  into the services. <br/>
 
 ### Container Status with Docker Compose
