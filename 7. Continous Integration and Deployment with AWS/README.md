@@ -36,7 +36,7 @@ script:
 ```
 
 <br/>
-This was the inital '.travis.yml' file. The final file is [here](https://github.com/cry0genic/Docker/blob/main/7.%20Continous%20Integration%20and%20Deployment%20with%20AWS/production/frontend/.travis.yml)
+This was the inital '.travis.yml' file. The final file is [.travis.yml](https://github.com/cry0genic/Docker/blob/main/7.%20Continous%20Integration%20and%20Deployment%20with%20AWS/production/frontend/.travis.yml)
 
 ### Exposing Ports Through The Dockerfile
 After the deployment is successful, if we head over to the URL given by AWS, the page won't load. This is because we haven't done any port mapping. Add ```EXPOSE 80``` after ```FROM nginx``` in the [Dockerfile](https://github.com/cry0genic/Docker/blob/main/7.%20Continous%20Integration%20and%20Deployment%20with%20AWS/production/frontend/Dockerfile).
