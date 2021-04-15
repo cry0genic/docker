@@ -4,18 +4,18 @@
 Copy over package.json 🠲 Run npm install 🠲 Copy over everthing else 🠲 Set a dockerfile which in turn sets up volumes for each of the project
 
 ### Dockerizing a React App
-[Dockerfile.dev](source code) <br/>
+[Dockerfile.dev](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/client/Dockerfile.dev) <br/>
 In the client directory, run ```docker build -f Dockerfile.dev .``` <br/>
 Grab the ID of the image, and then run ```docker run <imageID>``` <br/>
 
 ### Dockerizing Generic Node Apps
-Server [Dockerfile](source code) <br/>
-Worker [Dockerfile](source code) <br/>
+Server [Dockerfile.dev](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/server/Dockerfile.dev) <br/>
+Worker [Dockerfile.dev](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/worker/Dockerfile.dev) <br/>
 
 ### Adding Postgres as a Service
 We will now make a docker-compose file so as to make the process the process of starting each images as containers with proper arguments in an easy manner.<br/>
 
-We will first add the express server, the postgres servive and the redis servis.<br/>
+We will first add the express server, the postgres service and the redis service.<br/>
 
 ```bash
 version: '3'
@@ -64,7 +64,7 @@ environment:
             - PGPORT=5432
 ```
 
-[docker-compose.yml](source code)
+[docker-compose.yml](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/docker-compose.yml)
 
 ### The Worker & Client Services
 We need to add services for both the Worker and Client projects.<br/>
@@ -103,15 +103,15 @@ The browser is going to make static file requests to React server as well as API
 We will add another service which will essentially create a container with an instance of Nginx server running in it. The Nginx server is going to look at the request path and redirect them to correct servers. Also, if a route is '/api/values/all' nginx is going to chop off api and send '/values/all' to the server(not automatic, we configure it).<br/>
 
 ### Routing with Nginx
-We will make a [default.conf](source code) file which adds configuration rules to Nginx. <br/>
-Make a new folder 'nginx' inside the root directory and make a file inside is as [default.conf](source code) <br/>
+We will make a [default.conf](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/nginx/default.conf) file which adds configuration rules to Nginx. <br/>
+Make a new folder 'nginx' inside the root directory and make a file inside is as [default.conf](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/nginx/default.conf) <br/>
 
 The break keyword ensures that no extra rewrites happen<br/>
 
 ### Building a Custom Nginx Image
-Now we are going to put together a [Dockerfile.dev](source code) that'll create a new custom Nginx image and and apply the [default.conf](source code) file to it.<br/>
+Now we are going to put together a [Dockerfile.dev](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/nginx/Dockerfile.dev) that'll create a new custom Nginx image and and apply the [default.conf](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/nginx/default.conf) file to it.<br/>
 
-Now, we just need to add nginx as a service in the [docker-compose.yml](source code) file.<br/>
+Now, we just need to add nginx as a service in the [docker-compose.yml](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/docker-compose.yml) file.<br/>
 
 ```bash
 nginx:
@@ -146,7 +146,7 @@ location /sockjs-node {
 
 <br/>
 
-[default.conf](source code)
+[default.conf](https://github.com/cry0genic/Docker/blob/main/9.%20Dockerizing%20Multiple%20Services/complex/nginx/default.conf)
 
 
 
