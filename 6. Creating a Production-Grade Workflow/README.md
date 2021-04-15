@@ -31,6 +31,7 @@ Replace the default code ```Edit <code>src/App.js</code> and save to reload.``` 
 
 ### Docker Volumes
 We copy the /src and /public folders into the /app directory. Hence anytime we make any changes, it is not detected by default. Hence we abandon the straight COPY approach. We will use a Docker Volume. Using it, we set up a placeholder of some sort inside the docker container and hence we will no longer copy the entire /src or /public directory. Instead, we will put in a reference. The reference is essentially going to point back to local machine and give us access to these files and folders inside the local machine(can be thought of as a mapping from a folder inside the container to outside the container).<br/>
+
 We didn't use docker volumes before, because it's annoying. See the run command yourself: <br/>
 ```bash
 $ docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <imageID>
@@ -82,18 +83,24 @@ tests:
 <br/>
 
 We override the ```npm run start``` command by using ```npm run test``` <br/>
+
 Now everytime we run ```docker-compose up``` we will start up one container which will be responsible for hosting our development server and a second container which will be solely responsible for running our tests. The downside to this appraoch is that you cannot enter any standard commands in the docker-compose default terminal interactive test suit menu<br/>
+
 Everytime you add on a service, remember to use ```docker-compose up --build```
 
 
 ### Shortcomings on Testing
 By default, the STDIN of the Test Container isn't receiving any inputs from our terminal. We will now try docker attach command, so as to forward input from our terminal to STDIN of the Test Container. <br/>
+
 Run ```docker-compose up``` and then open a second terminal windows. <br/>
+
 Get the ID of the running container by ```docker ps``` (grab the one with npm run start) <br/>
 Run ```docker attach <containerID> ``` <br/>
 This does not work.Any text we enter does not work. Unfortunately, we cannot manipulate the test suite while using docker-compose. We will now explore why. <br/>
+
 Open a new terminal, grab the ID of the container and run ```docker exec -it <containerID> sh``` <br/>
 Run ```ps``` which which show all the processes running inside the container. <br/>
+
 When we run ```npm run test``` we are actually not directly running it, instead we are running process npm which further looks for more arguments and uses those arguments to decide what to do. Npm is eventually going to start up a second process that is actually running our test. This is the process that is actually executing the test suite. When we run ```docker attach``` we always attach to the STDIN of the primary process of the container. The primary npm process isn't responsible for taking in inputs for the test suite, it's the secondary process started by npm which is. 
 
 ### Need for Nginx
@@ -101,12 +108,16 @@ Nginx is an extremely popular web server. It takes incoming traffic and responds
 
 ### Multi-Step Docker Builds
 We are now going to start working on a second Dockerfile which is going to create an Image which will be specifically used in production.<br/>
+
 Use node:alpine 🠲 Copy the package.json file 🠲 Install dependencies 🠲 Run 'npm run build' 🠲 Start nginx <br/>
+
 Dependencies are only required to build the application, after which they are no longer required. Only the 'build' directory is required for production. Every other file and folder isn't required in the production environment. It would be nice if we could avoid carrying 150+ MBs worth of dependencies. Another issue is nginx server setup. <br/>
+
 We will build a dockerfile which has multi-step build process. This is because the best solution is to have two base images, one 'node:alpine' and another 'nginx'.Inside this Dockerfile we will have two different blocks of configurations(build phase and run phase).<br/>
 
 ### Implementing Multi-Step Builds
 We now create the [Dockerfile](https://github.com/cry0genic/Docker/blob/main/6.%20Creating%20a%20Production-Grade%20Workflow/prod/frontend/Dockerfile).<br/>
+
 Now that we are onto production, we don't much care about changing our source code and don't have to make use of volumes.
 
 ### Running Nginx
