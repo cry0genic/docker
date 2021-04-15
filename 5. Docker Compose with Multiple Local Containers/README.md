@@ -10,7 +10,7 @@ We will have separate docker containers for both the node application and the re
 [package.json](https://github.com/cry0genic/Docker/blob/main/5.%20Docker%20Compose%20with%20Multiple%20Local%20Containers/visits/package.json) <br/>
 
 ### Assembling a Dockerfile
-[Dockerfile](https://github.com/cry0genic/Docker/blob/main/5.%20Docker%20Compose%20with%20Multiple%20Local%20Containers/visits/docker-compose.yml) <br/>
+[Dockerfile](https://github.com/cry0genic/Docker/blob/main/5.%20Docker%20Compose%20with%20Multiple%20Local%20Containers/visits/Dockerfile) <br/>
 Inside the visits directory, run ```docker build .``` <br/>
 Tag the image by ```docker build -t <yourDockerID>/<name of project> . ``` <br/>
 
