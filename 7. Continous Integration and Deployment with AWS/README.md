@@ -8,7 +8,7 @@ We will tell Travis to test our file using '.travis.yml' file. This file will ha
 
 Tell Travis we need a copy of docker running 🠲 Build our image using Dockerfile.dev 🠲 Tell Travis how to run the test suite 🠲 Tell Travis how to deploy our code to AWS <br/>
 
-[.travis.yml](source code) <br/>
+[.travis.yml](https://github.com/cry0genic/Docker/blob/main/7.%20Continous%20Integration%20and%20Deployment%20with%20AWS/production/frontend/.travis.yml) <br/>
 
 When we run ```docker run <imageTag> npm run test``` the terminal just hangs and waits for input. To avoid this, we will use ```docker run <imageTag> npm run test -- --coverage``` <br/>
 
@@ -36,8 +36,8 @@ script:
 ```
 
 <br/>
-This was the inital '.travis.yml' file. The final file is [here](source code)
+This was the inital '.travis.yml' file. The final file is [here](https://github.com/cry0genic/Docker/blob/main/7.%20Continous%20Integration%20and%20Deployment%20with%20AWS/production/frontend/.travis.yml)
 
 ### Exposing Ports Through The Dockerfile
-After the deployment is successful, if we head over to the URL given by AWS, the page won't load. This is because we haven't done any port mapping. Add ```EXPOSE 80``` after ```FROM nginx``` in the [Dockerfile](source code).
+After the deployment is successful, if we head over to the URL given by AWS, the page won't load. This is because we haven't done any port mapping. Add ```EXPOSE 80``` after ```FROM nginx``` in the [Dockerfile](https://github.com/cry0genic/Docker/blob/main/7.%20Continous%20Integration%20and%20Deployment%20with%20AWS/production/frontend/Dockerfile).
 
