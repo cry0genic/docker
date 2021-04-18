@@ -50,3 +50,4 @@ The echo part is going to retrieve your docker password from the enviroment vari
 
 Now push all the changes to GitHub and let Travis do it's thing.
 
+
