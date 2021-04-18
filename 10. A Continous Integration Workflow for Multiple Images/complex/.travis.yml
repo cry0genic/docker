@@ -1,0 +1,24 @@
+
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docler build -t cry0genic/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run cry0genic/react-test npm test -- --coverage
+
+after_success:
+  - docker run -t cry0genic/multi-client ./client 
+  - docker run -t cry0genic/multi-nginx ./nginx
+  - docker run -t cry0genic/multi-server ./server
+  - docker run -t cry0genic/multi-worker ./worker
+  #Log into docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push them to Docker Hub
+  - docker push cry0genic/multi-client
+  - docker push cry0genic/multi-nginx
+  - docker push cry0genic/multi-server
+  - docker push cry0genic/multi-worker
+
