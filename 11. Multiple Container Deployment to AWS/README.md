@@ -3,7 +3,7 @@
 ### Multi-Container Definition Files
 This time, we don't have a single Dockerfile. We have many folders which have their own Dockerfiles. If we just push to code to AWS BS, it won't be able to figure out what to do. Therefore, we will now add configuration to tell EB how to run our project.
 
-Inside of our project directory, we will create a new file called [Dockerrun.aws.json](source code). It will tell EB where to pull our images from, which resources to allocate to each one, how to set up port mappings and some associated information. 
+Inside of our project directory, we will create a new file called [Dockerrun.aws.json](https://github.com/cry0genic/Docker/blob/main/11.%20Multiple%20Container%20Deployment%20to%20AWS/complex/Dockerrun.aws.json). It will tell EB where to pull our images from, which resources to allocate to each one, how to set up port mappings and some associated information. 
 
 This 'Dockerrun.aws.json' file can be thought of as a production version  of 'docker-compose.yml' file. The docker-compose file has instructions on how to build an image whereas the dockerrun file is going to pull the already built image and configure stuff.
 
@@ -66,7 +66,7 @@ We will now add the nginx to containerDefinitions
         }
 ```
 
-[Dockerrun.aws.json](source code)
+[Dockerrun.aws.json](https://github.com/cry0genic/Docker/blob/main/11.%20Multiple%20Container%20Deployment%20to%20AWS/complex/Dockerrun.aws.json)
 
 ### Creating the EB Environment
 Create a new application on AWS EB. Create an environment that maps up to the application that you just created. Choose 'Multi-Container Docker' in the preconfigured platform. 
@@ -76,7 +76,7 @@ In our Dockerrun file, we have no references to containers that are running Post
 
 In development, we were running the Postgres & Redis services inside the container. In production, we are going to take an alternate approach. 
 
-Nginx, Express Server, Nginx w/ Prod files and the Worker will all be running in the EB Instance. We wired up all the instructions for this in the [Dockerrun.aws.json](source code) file. The instance for Redis & Postgres which will be serving data for our application however will not be inside of EB instance. Instead we are going to rely upon two external services to fulfill all our dataneeds for our application. 
+Nginx, Express Server, Nginx w/ Prod files and the Worker will all be running in the EB Instance. We wired up all the instructions for this in the [Dockerrun.aws.json](https://github.com/cry0genic/Docker/blob/main/11.%20Multiple%20Container%20Deployment%20to%20AWS/complex/Dockerrun.aws.json) file. The instance for Redis & Postgres which will be serving data for our application however will not be inside of EB instance. Instead we are going to rely upon two external services to fulfill all our dataneeds for our application. 
 
 The two services that we are going to use are AWS Relational Database Service(RDS) and AWS Elastic Cache. These are general data-services that can be used with just about any application. 
 
@@ -143,7 +143,7 @@ deploy:
     secure: $"AWS_SECRET_KEY"  
 ```
 
-[.travis.yml](source code)
+[.travis.yml](https://github.com/cry0genic/Docker/blob/main/11.%20Multiple%20Container%20Deployment%20to%20AWS/complex/.travis.yml)
 
 ## ggwp
 
