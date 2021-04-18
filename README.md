@@ -5,7 +5,7 @@ Can be used as a reference for quick overview and understanding the basics of Do
 
 ### Running the code
 ```bash
-git clone https://github.com/cry0genic/Docker
-cd <project>
-docker-compose up
+$ git clone https://github.com/cry0genic/Docker
+$ cd <project>
+$ docker-compose up
 ```
