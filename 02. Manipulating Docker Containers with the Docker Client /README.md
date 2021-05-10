@@ -59,7 +59,7 @@ Get logs from a container:
 - Kill a running container:
     ```docker kill <container id>```<br/>
     "SIGKILL" message is sent(short for kill signal) which instantaneously shuts down the container.
-- Stop all containers: ```docker container stop $(docker container ls -aq) <br/>
+- Stop all containers: ```docker container stop $(docker container ls -aq)``` <br/>
 ### Executing Commands in Running Containers
 Execute an additional command in a container:
 ```docker exec -it <container id> <command>``` <br/>
